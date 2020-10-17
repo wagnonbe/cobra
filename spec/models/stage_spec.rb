@@ -2,6 +2,8 @@ RSpec.describe Stage do
   let(:tournament) { create(:tournament) }
   let(:stage) { create(:stage, tournament: tournament) }
 
+  let(:single_sided_tournament) { create(:tournament, :single_sided) }
+
   describe '#pair_new_round!' do
     it 'creates new round with pairings' do
       expect do
@@ -85,16 +87,24 @@ RSpec.describe Stage do
   end
 
   describe '#single_sided?' do
-    context 'swiss' do
-      let(:stage) { create(:stage, format: :swiss) }
+    context 'double sided swiss' do
+      let(:stage) { create(:stage, format: :swiss, tournament: tournament) }
 
       it 'is not single sided' do
         expect(stage.single_sided?).to be(false)
       end
     end
+    
+    context 'single sided swiss' do
+      let(:stage) { create(:stage, format: :double_elim, tournament: single_sided_tournament) }
+
+      it 'is single sided' do
+        expect(stage.single_sided?).to be(true)
+      end
+    end
 
     context 'double elim' do
-      let(:stage) { create(:stage, format: :double_elim) }
+      let(:stage) { create(:stage, format: :double_elim, tournament: tournament) }
 
       it 'is not single sided' do
         expect(stage.single_sided?).to be(true)

@@ -11,7 +11,28 @@ RSpec.describe Pairer do
   end
 
   describe '#pair!' do
-    context 'swiss' do
+    context 'single sided swiss' do
+      let(:tournament) { create(:tournament, :single_sided)}
+      let(:strategy) { double('PairingStrategies::SingleSidedSwiss') }
+
+      it 'delegates to single sided swiss strategy' do
+        allow(PairingStrategies::SingleSidedSwiss).to receive(:new).and_return(strategy)
+        allow(strategy).to receive(:pair!)
+
+        pairer.pair!
+
+        expect(strategy).to have_received(:pair!)
+      end
+
+      it 'applies table numbers' do
+        pairer.pair!
+        round.reload
+
+        expect(round.pairings.map(&:table_number).flatten).to eq([1, 2])
+      end
+    end
+
+    context 'double sided swiss' do
       let(:strategy) { double('PairingStrategies::Swiss') }
 
       it 'delegates to swiss strategy' do

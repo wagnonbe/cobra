@@ -5,6 +5,8 @@
 .form-group
   = f.input :stream_url, input_html: { class: 'form-control' }, label: 'Stream URL'
 .form-group
+  = f.input :single_sided_swiss, as: :boolean, inline_label: 'Use single sided swiss: the tournament will be paired in single sided rounds'
+.form-group
   = f.input :private, as: :boolean, inline_label: 'Private: Only I will be able to view this tournament'
 .form-group
   = f.input :manual_seed, as: :boolean, inline_label: 'Use manual seeding for tiebreakers: Players can be assigned a "seed" value that will be used before all other tiebreakers (in ascending order; i.e. Seed 1 wins all ties)'

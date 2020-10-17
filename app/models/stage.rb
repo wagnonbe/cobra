@@ -32,7 +32,7 @@ class Stage < ApplicationRecord
   end
 
   def single_sided?
-    double_elim?
+    double_elim? || tournament.single_sided_swiss
   end
 
   def cache_standings!

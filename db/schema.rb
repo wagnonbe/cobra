@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_24_135125) do
+ActiveRecord::Schema.define(version: 2020_10_17_183358) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,15 +22,6 @@ ActiveRecord::Schema.define(version: 2020_06_24_135125) do
     t.string "nrdb_code"
     t.string "autocomplete"
     t.index ["side"], name: "index_identities_on_side"
-  end
-
-  create_table "notifications", id: :serial, force: :cascade do |t|
-    t.string "message"
-    t.integer "notification_type"
-    t.integer "tournament_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["tournament_id"], name: "index_notifications_on_tournament_id"
   end
 
   create_table "pairings", id: :serial, force: :cascade do |t|
@@ -59,7 +50,6 @@ ActiveRecord::Schema.define(version: 2020_06_24_135125) do
     t.integer "seed"
     t.boolean "first_round_bye", default: false
     t.integer "previous_id"
-    t.boolean "deck_checked"
     t.integer "manual_seed"
     t.index ["tournament_id"], name: "index_players_on_tournament_id"
   end
@@ -114,6 +104,7 @@ ActiveRecord::Schema.define(version: 2020_06_24_135125) do
     t.boolean "private", default: false
     t.string "stream_url"
     t.boolean "manual_seed"
+    t.boolean "single_sided_swiss"
     t.index ["user_id"], name: "index_tournaments_on_user_id"
   end
 
