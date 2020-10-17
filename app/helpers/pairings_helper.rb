@@ -53,6 +53,26 @@ module PairingsHelper
       { score1_corp: 0, score2_runner: 3, score1_runner: 0, score2_corp: 3, label: '0-6' }
     ] unless pairing.stage.single_sided?
 
+    if pairing.stage.format == 'swiss'
+      return [
+        { score1_corp: 3, score2_runner: 0, score1_runner: 0, score2_corp: 0, label: '3-0' },
+        { score1_corp: 0, score2_runner: 3, score1_runner: 0, score2_corp: 0, label: '0-3' },
+        { score1_corp: 1, score2_runner: 1, score1_runner: 0, score2_corp: 0, label: '1-1' }
+      ] if pairing.side.try(:to_sym) == :player1_is_corp
+  
+      return [
+        { score1_corp: 0, score2_runner: 0, score1_runner: 3, score2_corp: 0, label: '3-0' },
+        { score1_corp: 0, score2_runner: 0, score1_runner: 0, score2_corp: 3, label: '0-3' },
+        { score1_corp: 0, score2_runner: 0, score1_runner: 1, score2_corp: 1, label: '1-1' }
+      ] if pairing.side.try(:to_sym) == :player1_is_runner
+  
+      return [
+        { score1: 3, score2: 0, score1_corp: 0, score2_runner: 0, score1_runner: 0, score2_corp: 0, label: '3-0' },
+        { score1: 0, score2: 3, score1_corp: 0, score2_runner: 0, score1_runner: 0, score2_corp: 0, label: '0-3' },
+        { score1: 1, score2: 1, score1_corp: 0, score2_runner: 0, score1_runner: 0, score2_corp: 0, label: '1-1' }
+      ]
+    end
+
     return [
       { score1_corp: 3, score2_runner: 0, score1_runner: 0, score2_corp: 0, label: '3-0' },
       { score1_corp: 0, score2_runner: 3, score1_runner: 0, score2_corp: 0, label: '0-3' }
