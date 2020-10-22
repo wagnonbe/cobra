@@ -1,8 +1,9 @@
 class SideDeterminer
   def self.determine_sides(player1, player2, stage)
     return nil if player1 == Swissper::Bye || player2 == Swissper::Bye
-    return nil unless player_has_pairings(player1, stage) || player_has_pairings(player2, stage)
 
+    #TODO: this currently carries over side_balance into cut 
+    #When this logic is extracted into the actual pairing algorithm, revert this change or make it stage-friendly
     diff1 = player1.side_balance
     diff2 = player2.side_balance
 
