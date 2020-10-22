@@ -1,5 +1,5 @@
 - if single_sided
-  - if !policy(pairing.tournament).update? || pairing.tournament.single_sided_swiss?
+  - if !policy(pairing.tournament).update? || (pairing.tournament.single_sided_swiss? && pairing.stage.format == 'swiss')
     = side_label_for(pairing, player)
   - else policy(pairing.tournament).update?
     = set_side_button(player, :corp, pairing)
