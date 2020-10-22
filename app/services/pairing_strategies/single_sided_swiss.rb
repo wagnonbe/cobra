@@ -43,7 +43,8 @@ module PairingStrategies
           player1: player_from_pairing(pairing[0]),
           player2: player_from_pairing(pairing[1]),
           score1: auto_score(pairing, 0),
-          score2: auto_score(pairing, 1)
+          score2: auto_score(pairing, 1),
+          side: rand < 0.5 ? :player1_is_corp : :player1_is_runner
         }
       end
   

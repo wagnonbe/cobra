@@ -20,6 +20,10 @@ class Player < ApplicationRecord
     pairings.non_bye
   end
 
+  def side_imbalanced_pairings
+    pairings.non_bye.single_sided
+  end
+
   def opponents
     pairings.map { |p| p.opponent_for(self) }
   end
@@ -32,10 +36,9 @@ class Player < ApplicationRecord
     @points ||= pairings.reported.sum { |pairing| pairing.score_for(self) }
   end
 
-  #TODO: finalize how we want to represent this - currently biases towards runner are positive, biases towards corp are negative
   #TODO: add tests for this
   def side_balance
-    @side_balance ||= non_bye_pairings.reported.sum { |pairing| pairing.side_for(self) == :runner ? 1 : -1 }
+    @side_balance ||= side_imbalanced_pairings.reported.sum { |pairing| pairing.side_for(self) == :corp ? 1 : -1 }
   end
 
   def sos_earned
