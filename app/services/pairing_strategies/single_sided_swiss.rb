@@ -44,7 +44,7 @@ module PairingStrategies
           player2: player_from_pairing(pairing[1]),
           score1: auto_score(pairing, 0),
           score2: auto_score(pairing, 1),
-          side: rand < 0.5 ? :player1_is_corp : :player1_is_runner
+          side: SideDeterminer.determine_sides(player_from_pairing(pairing[0]), player_from_pairing(pairing[1]), stage)
         }
       end
   
