@@ -14,6 +14,12 @@ class StandingRow < ApplicationRecord
     identity(player.runner_identity)
   end
 
+  def side_balance
+    return "Even" if player.side_balance == 0
+    favored = player.side_balance > 0 ? "Corp" : "Runner"
+    "#{favored}: +#{player.side_balance.abs}"
+  end
+
   private
 
   def identity(id)

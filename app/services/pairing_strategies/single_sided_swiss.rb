@@ -34,7 +34,9 @@ module PairingStrategies
         @paired_players ||= Swissper.pair(
           players_to_pair.to_a,
           delta_key: :points,
-          exclude_key: :unpairable_opponents
+          side_delta_key: :side_balance,
+          exclude_key: :unpairable_opponents,
+          single_sided: true
         )
       end
   

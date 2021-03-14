@@ -10,6 +10,7 @@ table.table.table-striped.standings
         th Seed
       th SOS
       th Extended SOS
+      th Side Balance
   tbody
     - if stage.rounds.complete.any?
       - stage.standing_rows.each do |row|
@@ -24,6 +25,7 @@ table.table.table-striped.standings
             td= row.manual_seed || '-'
           td= number_with_precision row.sos, precision: 4
           td= number_with_precision row.extended_sos, precision: 4
+          td= row.side_balance
     - else
       - stage.players.sort.each_with_index do |player, i|
         tr

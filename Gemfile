@@ -16,10 +16,12 @@ gem 'rqrcode'
 gem 'sassc-rails'
 gem 'simple_form'
 gem 'slim-rails'
-gem 'swissper'
+gem 'swissper',
+  :path => '../swissper'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 gem 'unicorn'
+gem 'mini_racer'
 
 group :development, :test do
   gem 'pry'
