@@ -28,6 +28,16 @@ class Player < ApplicationRecord
     pairings.map { |p| p.opponent_for(self) }
   end
 
+  # opponents we have played corp against
+  def opponents_corped_against
+    pairings.select { |p| p.side_for(self) == :corp || p.side == nil}.map { |p| p.opponent_for(self) }
+  end
+
+  # opponents we have played runner against
+  def opponents_ran_against
+    pairings.select { |p| p.side_for(self) == :runner || p.side == nil}.map { |p| p.opponent_for(self) }
+  end
+
   def non_bye_opponents
     non_bye_pairings.map { |p| p.opponent_for(self) }
   end

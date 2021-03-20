@@ -29,13 +29,16 @@ module PairingStrategies
   
       def paired_players
         return @paired_players ||= players_to_pair.to_a.shuffle.in_groups_of(2, Swissper::Bye) if first_round?
-        #TODO: look into implementing BigSwiss changes - are these for performance? what about them is needed
+        #TODO: look into implementing BigSwiss changes - are these for performance? what about them is needed?
+        #TODO: do we want to change unpairable opponents to be a hash with "sides played" tracked there?
   
         @paired_players ||= Swissper.pair(
           players_to_pair.to_a,
           delta_key: :points,
           side_delta_key: :side_balance,
           exclude_key: :unpairable_opponents,
+          corped_key: :uncorpable_opponents,
+          ran_key: :unrunnerable_opponents,
           single_sided: true
         )
       end

@@ -10,6 +10,10 @@ class SideDeterminer
     return :player1_is_corp if diff1 < diff2
     return :player1_is_runner if diff1 > diff2
 
+    #TODO: make stage-friendly
+    return :player1_is_runner if player1.opponents_corped_against.includes(player2) && !player1.opponents_ran_against.includes(player2)
+    return :player1_is_corp if player1.opponents_ran_against.includes(player2) && !player1.opponents_corped_against.includes(player2)
+
     [:player1_is_corp, :player1_is_runner].sample
   end
 
