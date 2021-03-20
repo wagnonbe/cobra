@@ -58,7 +58,7 @@ class Tournament < ApplicationRecord
 
   def qr
     @qr ||= RQRCode::QRCode.new(
-      "http://cobr.ai/#{slug.downcase}",
+      "#{Rails.application.secrets[:domain]}/#{slug.downcase}",
       size: 4,
       level: :h
     ) if slug

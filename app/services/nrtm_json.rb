@@ -39,7 +39,7 @@ class NrtmJson
       uploadedFrom: "Cobra",
       links: [
         { rel: "schemaderivedfrom", href: "http://steffens.org/nrtm/nrtm-schema.json" },
-        { rel: "uploadedfrom", href: "http://cobr.ai/#{tournament.slug}" }
+        { rel: "uploadedfrom", href: "#{Rails.application.secrets[:domain]}/#{tournament.slug}" }
       ]
     }
   end
