@@ -1,5 +1,7 @@
-PATH
-  remote: ../swissper
+GIT
+  remote: https://github.com/wagnonbe/swissper.git
+  revision: b22cc5b30d2d7ecc60e36cbb7c51c9de46813647
+  branch: add_single_sided
   specs:
     swissper (0.3.0)
       graph_matching (~> 0.0)
