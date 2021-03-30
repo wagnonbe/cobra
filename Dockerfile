@@ -2,7 +2,7 @@
 FROM ruby:2.6.6-slim
 
 # Install essential Linux packages
-RUN apt-get update -qq && apt-get install -y build-essential libpq-dev postgresql-client curl
+RUN apt-get update -qq && apt-get install -y build-essential libpq-dev postgresql-client curl && apt-get install -y git
 
 # Install nodejs
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
